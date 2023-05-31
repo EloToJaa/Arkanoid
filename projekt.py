@@ -3,10 +3,15 @@ import stale
 from Platforma import Platforma
 from Kulka import Kulka
 
+# Start
+pygame.init()
+pygame.font.init()
+
 # Zmienne
 ekran = pygame.display.set_mode((stale.SZEROKOSC_EKRANU, stale.WYSOKOSC_EKRANU))
 zegar = pygame.time.Clock()
 obraz_tla = pygame.image.load("images/background.png")
+czcionka = pygame.font.SysFont("Comic Sans MS", 24)
 zycia = 3
 
 # Obiekty
@@ -45,6 +50,10 @@ while gra_dziala:
     ekran.blit(obraz_tla, (0, 0))
     ekran.blit(platforma.surf, platforma.pozycja)
     ekran.blit(kulka.obraz, kulka.pozycja)
+
+    # Tekst
+    tekst = czcionka.render(f"Życia: {zycia}", False, (255, 0, 255))
+    ekran.blit(tekst, (16, 16))
 
     # Koniec pętli
     pygame.display.flip()
