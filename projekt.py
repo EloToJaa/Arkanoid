@@ -7,6 +7,7 @@ from Kulka import Kulka
 ekran = pygame.display.set_mode((stale.SZEROKOSC_EKRANU, stale.WYSOKOSC_EKRANU))
 zegar = pygame.time.Clock()
 obraz_tla = pygame.image.load("images/background.png")
+zycia = 3
 
 # Obiekty
 platforma = Platforma()
@@ -33,6 +34,12 @@ while gra_dziala:
     # Aktualizacja
     kulka.aktualizuj(platforma)
     platforma.aktualizuj()
+    if kulka.przegrana:
+        zycia -= 1
+        if zycia <= 0:
+            gra_dziala = False
+        kulka.zresetuj_pozycje()
+        platforma.zresetuj_pozycje()
 
     # Rysowanie
     ekran.blit(obraz_tla, (0, 0))
