@@ -2,6 +2,7 @@ import pygame
 import random
 import stale
 from Platforma import Platforma
+from Klocek import Klocek
 
 vec = pygame.math.Vector2
 
@@ -22,12 +23,12 @@ class Kulka(pygame.sprite.Sprite):
         self.wektor.rotate_ip(self.kat_nachylenia)
         self.przegrana = False
 
-    def aktualizuj(self, platforma: Platforma, klocki):
+    def aktualizuj(self, platforma: Platforma, klocki: pygame.sprite.Group):
         self.wspolrzedne += self.wektor
         self.pozycja.center = self.wspolrzedne
         self.sprawdz_kolizje(platforma, klocki)
 
-    def sprawdz_kolizje(self, platforma: Platforma, klocki):
+    def sprawdz_kolizje(self, platforma: Platforma, klocki: pygame.sprite.Group):
         if self.pozycja.left <= 0:
             self.wektor.x *= -1
         if self.pozycja.right >= stale.SZEROKOSC_EKRANU:
@@ -47,14 +48,23 @@ class Kulka(pygame.sprite.Sprite):
                 self.wektor.x = 10
 
         for klocek in klocki:
+            klocek: Klocek = klocek
             if self.kolizja_z_klockiem(self, klocek):
                 klocek.uderzenie()
                 break
 
-    def kolizja_z_klockiem(self, kulka, klocek):
+    def kolizja_z_klockiem(self, kulka, klocek: Klocek):
         dystans_x = (
             abs(kulka.pozycja.centerx - klocek.pozycja.centerx) - klocek.pozycja.w / 2
         )
         dystans_y = (
             abs(kulka.pozycja.centery - klocek.pozycja.centery) - klocek.pozycja.h / 2
         )
+
+        if dystans_x <= kulka.r and dystans_y <= kulka.r:
+            if dystans_x < dystans_y:
+                self.wektor.y *= -1
+            else:
+                self.wektor.x *= -1
+            return True
+        return False
