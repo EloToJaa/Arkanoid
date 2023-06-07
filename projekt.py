@@ -44,6 +44,27 @@ poziom3 = [
     [0, 0, 3, 0, 3, 3, 0, 3, 0, 0],
 ]
 
+klocki = pygame.sprite.Group()
+
+
+def dodaj_klocki():
+    wczytany_poziom = None
+    if poziom == 0:
+        wczytany_poziom = poziom1
+    if poziom == 1:
+        wczytany_poziom = poziom2
+    if poziom == 2:
+        wczytany_poziom = poziom3
+
+    for i in range(10):
+        for j in range(7):
+            if wczytany_poziom[j][i] != 0:
+                klocek = Klocek(32 + i * 96, 32 + j * 48, wczytany_poziom[j][i])
+                klocki.add(klocek)
+
+
+dodaj_klocki()
+
 
 # Obiekty
 platforma = Platforma()
@@ -67,8 +88,18 @@ while gra_dziala:
     if keys[pygame.K_d]:
         platforma.ruszaj_platforma(1)
 
+    # Sprawdzanie
+    if len(klocki.sprites()) == 0:
+        poziom += 1
+        if poziom >= 3:
+            break
+        kulka.zresetuj_pozycje()
+        platforma.zresetuj_pozycje()
+        dodaj_klocki()
+
     # Aktualizacja
-    kulka.aktualizuj(platforma)
+    kulka.aktualizuj(platforma, klocki)
+    klocki.update()
     platforma.aktualizuj()
     if kulka.przegrana:
         zycia -= 1
@@ -81,6 +112,9 @@ while gra_dziala:
     ekran.blit(obraz_tla, (0, 0))
     ekran.blit(platforma.surf, platforma.pozycja)
     ekran.blit(kulka.obraz, kulka.pozycja)
+    for klocek in klocki:
+        klocek: Klocek = klocek
+        ekran.blit(klocek.obraz, klocek.pozycja)
 
     # Tekst
     tekst = czcionka.render(f"Życia: {zycia}", False, (255, 0, 255))
