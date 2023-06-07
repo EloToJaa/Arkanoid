@@ -43,6 +43,15 @@ poziom3 = [
     [0, 0, 2, 0, 3, 3, 0, 2, 0, 0],
     [0, 0, 3, 0, 3, 3, 0, 3, 0, 0],
 ]
+poziom4 = [
+    [2, 3, 2, 2, 2, 2, 2, 2, 3, 2],
+    [2, 1, 3, 1, 1, 1, 1, 3, 1, 2],
+    [2, 3, 1, 3, 1, 1, 3, 1, 3, 2],
+    [3, 2, 2, 2, 3, 3, 2, 2, 2, 3],
+    [0, 0, 2, 2, 3, 3, 2, 2, 0, 0],
+    [0, 0, 2, 0, 3, 3, 0, 2, 0, 0],
+    [0, 0, 3, 0, 3, 3, 0, 3, 0, 0],
+]
 
 klocki = pygame.sprite.Group()
 
@@ -55,6 +64,8 @@ def dodaj_klocki():
         wczytany_poziom = poziom2
     if poziom == 2:
         wczytany_poziom = poziom3
+    if poziom == 3:
+        wczytany_poziom = poziom4
 
     for i in range(10):
         for j in range(7):
@@ -91,7 +102,7 @@ while gra_dziala:
     # Sprawdzanie
     if len(klocki.sprites()) == 0:
         poziom += 1
-        if poziom >= 3:
+        if poziom >= stale.OSTATNI_POZIOM:
             break
         kulka.zresetuj_pozycje()
         platforma.zresetuj_pozycje()
