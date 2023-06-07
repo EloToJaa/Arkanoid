@@ -2,6 +2,7 @@ import pygame
 import stale
 from Platforma import Platforma
 from Kulka import Kulka
+from Klocek import Klocek
 
 # Start
 pygame.init()
@@ -13,6 +14,36 @@ zegar = pygame.time.Clock()
 obraz_tla = pygame.image.load("images/background.png")
 czcionka = pygame.font.SysFont("Comic Sans MS", 24)
 zycia = 3
+poziom = 0
+
+poziom1 = [
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+poziom2 = [
+    [0, 0, 1, 2, 3, 3, 2, 1, 0, 0],
+    [0, 1, 1, 1, 2, 2, 1, 1, 1, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 2, 0, 0, 0, 0, 2, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 2, 0, 2, 0, 0, 2, 0, 2, 0],
+]
+poziom3 = [
+    [2, 3, 2, 2, 2, 2, 2, 2, 3, 2],
+    [2, 1, 3, 1, 1, 1, 1, 3, 1, 2],
+    [2, 3, 1, 3, 1, 1, 3, 1, 3, 2],
+    [3, 2, 2, 2, 3, 3, 2, 2, 2, 3],
+    [0, 0, 2, 2, 3, 3, 2, 2, 0, 0],
+    [0, 0, 2, 0, 3, 3, 0, 2, 0, 0],
+    [0, 0, 3, 0, 3, 3, 0, 3, 0, 0],
+]
+
 
 # Obiekty
 platforma = Platforma()

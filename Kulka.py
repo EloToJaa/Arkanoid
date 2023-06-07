@@ -3,7 +3,6 @@ import random
 import stale
 from Platforma import Platforma
 from Klocek import Klocek
-from Kulka import Kulka
 
 vec = pygame.math.Vector2
 
