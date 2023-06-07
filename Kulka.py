@@ -3,6 +3,7 @@ import random
 import stale
 from Platforma import Platforma
 from Klocek import Klocek
+from Kulka import Kulka
 
 vec = pygame.math.Vector2
 
@@ -49,19 +50,19 @@ class Kulka(pygame.sprite.Sprite):
 
         for klocek in klocki:
             klocek: Klocek = klocek
-            if self.kolizja_z_klockiem(self, klocek):
+            if self.kolizja_z_klockiem(klocek):
                 klocek.uderzenie()
                 break
 
-    def kolizja_z_klockiem(self, kulka, klocek: Klocek):
+    def kolizja_z_klockiem(self, klocek: Klocek) -> bool:
         dystans_x = (
-            abs(kulka.pozycja.centerx - klocek.pozycja.centerx) - klocek.pozycja.w / 2
+            abs(self.pozycja.centerx - klocek.pozycja.centerx) - klocek.pozycja.w / 2
         )
         dystans_y = (
-            abs(kulka.pozycja.centery - klocek.pozycja.centery) - klocek.pozycja.h / 2
+            abs(self.pozycja.centery - klocek.pozycja.centery) - klocek.pozycja.h / 2
         )
 
-        if dystans_x <= kulka.r and dystans_y <= kulka.r:
+        if dystans_x <= self.r and dystans_y <= self.r:
             if dystans_x < dystans_y:
                 self.wektor.y *= -1
             else:
