@@ -8,8 +8,6 @@ public class ArcanoidBall : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        RunBall();
     }
 
     public void RunBall()
