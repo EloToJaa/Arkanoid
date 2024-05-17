@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        bricks.AddRange(GameObject.FindGameObjectsWithTag("Brick"));
     }
 
     private void Update()
