@@ -27,6 +27,7 @@ public class BricksScript : MonoBehaviour
         if (collision.gameObject.name == "Ball")
         {
             lives--;
+            BrickColor();
 
             if (lives <= 0)
             {
