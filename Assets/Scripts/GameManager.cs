@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> bricks = new List<GameObject>();
     public ArcanoidBall ball;
+    public int lives = 3;
     
     private bool gameRunning = false;
 
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
             if (bricks.Count <= 0)
             {
                 EndGame(true);
+            }
+
+            if (lives <= 0)
+            {
+                EndGame(false);
             }
         }
         else
