@@ -19,14 +19,22 @@ public class ArcanoidBall : MonoBehaviour
     public void StopBall()
     {
         rb.velocity = new Vector3(0, 0, 0);
+        transform.position = new Vector3(0, -3, 0);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Lose")
         {
-            Debug.Log("You lose!");
-            this.gameObject.GetComponent<Renderer>().enabled = false;
+            GameManager.instance.lives--;
+            StopBall();
+            GameManager.instance.gameRunning = false;
+
+            if(GameManager.instance.lives <= 0)
+            {
+                GameManager.instance.EndGame(false);
+                this.gameObject.GetComponent<Renderer>().enabled = false;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public ArcanoidBall ball;
     public int lives = 3;
     
-    private bool gameRunning = false;
+    public bool gameRunning = false;
 
     private void Awake()
     {
