@@ -40,7 +40,7 @@ public class BrickGenerator : MonoBehaviour
     };
 
     public int[,] bricksArray5 = new int[,] {
-        {2, 3, 4, 6, 7, 6, 4, 3},
+        {2, 3, 4, 6, 6, 6, 4, 3},
         {2, 3, 4, 5, 6, 5, 4, 3},
         {1, 2, 3, 4, 4, 3, 2, 1},
         {0, 1, 2, 3, 3, 2, 1, 0},
