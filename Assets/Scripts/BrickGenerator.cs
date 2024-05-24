@@ -1,21 +1,65 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BrickGenerator : MonoBehaviour
 {
-    public int[,] bricksArray = new int[,] {
-        {2,2,3,5,6,5,3,3, },
-        {2,2,3,4,5,4,3,2, },
-        {1,2,2,2,2,3,2,2, },
-        {0,2,2,2,2,3,2,0, },
-        {0,0,3,3,3,3,0,0, },
-        {0,0,0,3,3,0,0,0, },
+    public int[,] bricksArray1 = new int[,] {
+        {2, 2, 3, 5, 6, 5, 3, 3},
+        {2, 2, 3, 4, 5, 4, 3, 2},
+        {1, 2, 2, 2, 2, 3, 2, 2},
+        {0, 2, 2, 2, 2, 3, 2, 0},
+        {0, 0, 3, 3, 3, 3, 0, 0},
+        {0, 0, 0, 3, 3, 0, 0, 0},
     };
+
+    public int[,] bricksArray2 = new int[,] {
+        {3, 3, 4, 6, 5, 6, 4, 4},
+        {3, 3, 4, 5, 6, 5, 4, 3},
+        {2, 3, 3, 3, 3, 4, 3, 3},
+        {1, 3, 3, 3, 3, 4, 3, 1},
+        {0, 1, 4, 4, 4, 4, 1, 0},
+        {0, 0, 1, 4, 4, 1, 0, 0},
+    };
+
+    public int[,] bricksArray3 = new int[,] {
+        {1, 1, 2, 4, 5, 4, 2, 2},
+        {1, 1, 2, 3, 4, 3, 2, 1},
+        {0, 1, 1, 1, 1, 2, 1, 1},
+        {0, 1, 1, 1, 1, 2, 1, 0},
+        {0, 0, 2, 2, 2, 2, 0, 0},
+        {0, 0, 0, 2, 2, 0, 0, 0},
+    };
+
+    public int[,] bricksArray4 = new int[,] {
+        {2, 3, 3, 5, 6, 5, 3, 3},
+        {2, 3, 3, 4, 5, 4, 3, 2},
+        {1, 2, 3, 3, 3, 3, 2, 1},
+        {0, 1, 2, 3, 3, 3, 2, 0},
+        {0, 0, 1, 3, 3, 1, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+    };
+
+    public int[,] bricksArray5 = new int[,] {
+        {2, 3, 4, 6, 7, 6, 4, 3},
+        {2, 3, 4, 5, 6, 5, 4, 3},
+        {1, 2, 3, 4, 4, 3, 2, 1},
+        {0, 1, 2, 3, 3, 2, 1, 0},
+        {0, 0, 1, 2, 2, 1, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+    };
+
+    public List<int[,]> levels;
 
     public GameObject brick;
 
     private void Start()
     {
-        GenerateBricks(bricksArray);
+        levels = new List<int[,]> { bricksArray1, bricksArray2, bricksArray3, bricksArray4, bricksArray5 };
+
+        foreach (var level in levels)
+        {
+            GenerateBricks(level);
+        }
     }
 
     public void GenerateBricks(int[,] array)
