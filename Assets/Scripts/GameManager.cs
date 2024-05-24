@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> bricks = new List<GameObject>();
     public ArcanoidBall ball;
     public int lives = 3;
-    
+
+    public BrickGenerator brickGenerator;
+    public int maxLevel => brickGenerator.levels.Count;
+    private int currentLevel = 1;
+
     public bool gameRunning = false;
 
     private void Awake()
@@ -24,9 +28,15 @@ public class GameManager : MonoBehaviour
     {
         if(gameRunning)
         {
-            if (bricks.Count <= 0)
+            if (bricks.Count == 0 && currentLevel == maxLevel)
             {
                 EndGame(true);
+            }
+            if(bricks.Count == 0 && currentLevel < maxLevel)
+            {
+                currentLevel++;
+                ball.StopBall();
+                brickGenerator.StartLevel(currentLevel);
             }
 
             if (lives <= 0)

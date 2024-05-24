@@ -57,6 +57,11 @@ public class BrickGenerator : MonoBehaviour
         levels = new List<int[,]> { bricksArray1, bricksArray2, bricksArray3, bricksArray4, bricksArray5 };
     }
 
+    private void Start()
+    {
+        StartLevel(1);
+    }
+
     public void GenerateBricks(int[,] array)
     {
         for(int i = 0; i < array.GetLength(0); i++)
@@ -74,5 +79,11 @@ public class BrickGenerator : MonoBehaviour
             }
         }
         GameManager.instance.bricks.AddRange(GameObject.FindGameObjectsWithTag("Brick"));
+    }
+
+    public void StartLevel(int number)
+    {
+        GameManager.instance.bricks.Clear();
+        GenerateBricks(levels[number - 1]);
     }
 }
