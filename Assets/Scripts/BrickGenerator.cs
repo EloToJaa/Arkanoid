@@ -52,11 +52,9 @@ public class BrickGenerator : MonoBehaviour
 
     public GameObject brick;
 
-    private void Start()
+    private void Awake()
     {
         levels = new List<int[,]> { bricksArray1, bricksArray2, bricksArray3, bricksArray4, bricksArray5 };
-
-        
     }
 
     public void GenerateBricks(int[,] array)
