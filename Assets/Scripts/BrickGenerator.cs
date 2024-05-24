@@ -56,10 +56,7 @@ public class BrickGenerator : MonoBehaviour
     {
         levels = new List<int[,]> { bricksArray1, bricksArray2, bricksArray3, bricksArray4, bricksArray5 };
 
-        foreach (var level in levels)
-        {
-            GenerateBricks(level);
-        }
+        
     }
 
     public void GenerateBricks(int[,] array)
