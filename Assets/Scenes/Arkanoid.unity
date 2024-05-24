@@ -772,6 +772,7 @@ MonoBehaviour:
   bricks: []
   ball: {fileID: 253404077}
   lives: 3
+  brickGenerator: {fileID: 352460834}
   gameRunning: 0
 --- !u!1 &1522018243
 GameObject:
